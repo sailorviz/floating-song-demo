@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>水草般漂浮的歌名</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #001d3d 0%, #000814 100%);
+      overflow: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .song {
+      position: absolute;
+      white-space: nowrap;
+      color: #a0c4ff;
+      opacity: 0.6;
+      font-size: 18px;
+      animation: waveMove 6s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes waveMove {
+      0%   { transform: translateY(0px) rotate(0deg) skewX(0deg); }
+      25%  { transform: translateY(-8px) rotate(1deg) skewX(2deg); }
+      50%  { transform: translateY(0px) rotate(-1deg) skewX(-2deg); }
+      75%  { transform: translateY(8px) rotate(1deg) skewX(1deg); }
+      100% { transform: translateY(0px) rotate(0deg) skewX(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const songs = [
+      "Someone Like You", "Hello", "Set Fire to the Rain",
+      "Skyfall", "Turning Tables", "Make You Feel My Love",
+      "Rolling in the Deep", "Send My Love", "Water Under the Bridge",
+      "When We Were Young", "Easy on Me"
+    ];
+
+    const container = document.getElementById("container");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    songs.forEach((song, index) => {
+  const el = document.createElement("div");
+  el.classList.add("song");
+  el.textContent = song;
+
+  const x = random(0, width - 100);
+  const y = random(0, height - 30);
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+
+  el.style.fontSize = `${random(14, 24)}px`;
+  el.style.animationDuration = `${random(5, 10)}s`;
+  el.style.animationDelay = `${random(0, 5)}s`;
+
+  // 🌟 加入透明度层次
+  el.style.opacity = `${random(0.2, 0.8)}`;
+
+  container.appendChild(el);
+});
+
+  </script>
+</body>
+</html>
